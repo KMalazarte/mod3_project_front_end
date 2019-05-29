@@ -92,7 +92,7 @@ ul:hover {
 }
 
 
-.muscle-diagram {
+#muscle-diagram {
  border-radius: 25px;
  opacity: .9;
  background: #007bff;
@@ -112,6 +112,14 @@ ul:hover {
   border-radius: 25px;
   /*background: #73AD21;*/
   padding: 20px;
-  width: 500px;
-  height: 550px;
+  width: 300px;
+  height: 350px;
+}
+
+#image-or-video{
+  border-radius: 25px;
+  /*background: #73AD21;*/
+  padding: 20px;
+  width: 300px;
+  height: 350px;
 }
