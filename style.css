@@ -35,6 +35,21 @@ body{
   text-align: center;
 }
 
+.likeBtn{
+	opacity: .87;
+	background-color: blue;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+  margin-top: 5px;
+  box-shadow: 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 1rem;
+  text-align: center;
+}
+
 .sidenav {
   height: 100%;
   width: 160px;
