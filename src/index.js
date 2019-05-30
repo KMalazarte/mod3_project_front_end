@@ -9,14 +9,12 @@ console.log(imageOrVideo)
 fetch(bodyPartsURL)
   .then(res => res.json())
   .then(data => {
-
     data.forEach(bodypart => {
       bodyPartList.innerHTML += `
-        <div class="w3-ul w3-border">
+        <div>
           <ul data-name=${bodypart.name}>${bodypart.name}
           <button id='${bodypart.id}' class='button'>See Exercises</button>
           </ul>
-        </ul>
       `
     })
   })
@@ -39,9 +37,8 @@ bodyPartList.addEventListener('click', (e) => {
 					// console.log(exercise)
 
           muscleCardSubtitle.innerHTML += `
-                      <h3>${exercise.name}</h3>
-                      <p>${exercise.description}</p> </br>
-											<button data-id=${exercise.id} class='videoBtn' type="button" name="button">Press for Video</button>
+                      <h3>${exercise.name} <button data-id=${exercise.id} class='videoBtn' type="button" name="button">Video Tutorial</button></h3>
+                      <p>${exercise.description}</p>
                     `
       }) //end of filterExercise forEach
     }) //exercises.forEach(exercise =>
@@ -53,7 +50,6 @@ muscleCardSubtitle.addEventListener('click', (e)=>{
 		fetch(exercisesURL+'/'+e.target.dataset.id)
 			.then(res=>res.json())
 			.then(exercise=>{
-
 				imageOrVideo.innerHTML = `
 						<iframe width="420" height="315"
 						src=${exercise.videoURL}>
