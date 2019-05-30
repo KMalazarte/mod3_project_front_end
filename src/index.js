@@ -25,23 +25,18 @@ bodyPartList.addEventListener('click', (e) => {
     fetch(exercisesURL)
       .then(res => res.json())
       .then(exercises => {
-
-
-
         const filterExercise = exercises.filter((exercise) =>
 				 parseInt(e.target.id) === exercise.body_group_id)
 
-
 				muscleCardSubtitle.innerHTML = ``
         filterExercise.forEach(exercise => {
-					// console.log(exercise)
 
           muscleCardSubtitle.innerHTML += `
-                      <h3>${exercise.name} <button data-id=${exercise.id} class='videoBtn' type="button" name="button">Video Tutorial</button></h3>
+                      <h3>${exercise.name} <button data-id=${exercise.id} class='videoBtn' type="button" name="button">Video Tutorial</button><button type="button" class="likeBtn">Like</button></h3>
                       <p>${exercise.description}</p>
                     `
-      }) //end of filterExercise forEach
-    }) //exercises.forEach(exercise =>
+      })
+    })
 	}
 })
 
