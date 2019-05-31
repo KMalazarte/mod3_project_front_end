@@ -4,6 +4,7 @@ const bodyPartList = document.querySelector('#body_groups-list')
 const muscleCardSubtitle = document.querySelector('#muscleCardSubtitle')
 const pictureOrVideo = document.querySelector('#muscle-diagram')
 const imageOrVideo = document.querySelector('#image-or-video')
+let exerciseArray = []
 console.log(imageOrVideo)
 
 fetch(bodyPartsURL)
@@ -25,20 +26,22 @@ bodyPartList.addEventListener('click', (e) => {
     fetch(exercisesURL)
       .then(res => res.json())
       .then(exercises => {
+        exerciseArray = exercises
+        console.log(exerciseArray);
         const filterExercise = exercises.filter((exercise) =>
 				 parseInt(e.target.id) === exercise.body_group_id)
 
 				muscleCardSubtitle.innerHTML = ``
         filterExercise.forEach(exercise => {
-
           muscleCardSubtitle.innerHTML += `
-                      <h3>${exercise.name} <button data-id=${exercise.id} class='videoBtn' type="button" name="button">Video Tutorial</button><button type="button" class="likeBtn">Like</button></h3>
+                      <h3>${exercise.name} <button data-id=${exercise.id} class='videoBtn' type="button" name="button">Video Tutorial</button><button type="button" data-id=${exercise.id} class="likeBtn">💪${exercise.likes}</button></h3>
                       <p>${exercise.description}</p>
                     `
-      })
-    })
-	}
-})
+        }) //filterExercise.forEach(exercise
+    })//then(exercises =
+  } //if (e.target.classNa
+}) //bodyPartList.addEventListener
+
 
 muscleCardSubtitle.addEventListener('click', (e)=>{
 	if (e.target.className === 'videoBtn') {
@@ -51,5 +54,24 @@ muscleCardSubtitle.addEventListener('click', (e)=>{
 						</iframe>
 					`
 			})
-	}
-})
+	} else if (e.target.className === "likeBtn") {
+      let selectedId = parseInt(e.target.dataset.id)
+      let selectedExercise = exerciseArray.find(function(exercise) {
+        return exercise.id === selectedId
+      })//selectedExercise = exerciseArray.find(function(exercise) {
+        // let likeNum = selectedExercise.likes
+        // ++likeNum
+        ++selectedExercise.likes
+        e.target.innerText = `💪${selectedExercise.likes}`
+        // console.log(likeNum);
+          // console.log(selectedExercise);
+        fetch(`http://localhost:3000/exercises/${selectedId}`, {
+          method: "PATCH",
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },// headers: {'Content-Type': 'application/json',
+          body: JSON.stringify({"likes": selectedExercise.likes})
+        }) //fetch(`http://localhost:3000/
+  } //else if () {
+}) //muscleCardSubtitle.addEventListener
